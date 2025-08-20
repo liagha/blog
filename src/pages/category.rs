@@ -3,13 +3,13 @@ use {
     crate::{
         components::{
             header::Header,
-            post_preview::PostPreview,
+            preview::PostPreview,
         },
         data::{
             categories::{BlogCategory, get_categories},
             posts::{BlogPost, get_blog_posts},
         },
-    }    
+    }
 };
 
 #[component]

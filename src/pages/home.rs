@@ -3,7 +3,7 @@ use {
     crate::{
         components::{
             header::Header,
-            post_preview::PostPreview,
+            preview::PostPreview,
         },
         data::posts::{BlogPost, get_blog_posts},
     }
