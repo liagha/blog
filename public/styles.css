@@ -1,4 +1,19 @@
 /* ==========================================================================
+   THEME VARIABLES
+   ========================================================================== */
+
+:root {
+    --primary-bg: #f8f9fa; /* Default light theme values */
+    --secondary-bg: #fff;
+    --primary-text: #333;
+    --secondary-text: #495057;
+    --accent: #007bff;
+    --border: #e9ecef;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --hover-shadow: rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
    RESET & BASE STYLES
    ========================================================================== */
 
@@ -11,8 +26,9 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
-    color: #333;
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ==========================================================================
@@ -42,25 +58,36 @@ body {
    ========================================================================== */
 
 .header {
-    background-color: #fff;
-    border-bottom: 1px solid #e9ecef;
+    background-color: var(--secondary-bg);
+    border-bottom: 1px solid var(--border);
     padding: 1rem 0;
     margin-bottom: 0;
 }
 
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
 .site-title {
-    color: #212529;
-    margin: 0 0 0.5rem 0;
+    color: var(--primary-text);
+    margin: 0;
     font-size: 2rem;
     font-weight: 700;
 }
 
 .nav {
-    margin: 0;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .nav-link {
-    color: #007bff;
+    color: var(--accent);
     text-decoration: none;
     font-weight: 500;
     padding: 0.5rem 0;
@@ -68,8 +95,37 @@ body {
 }
 
 .nav-link:hover {
-    color: #0056b3;
-    text-decoration: underline;
+    color: var(--primary-text);
+}
+
+/* ==========================================================================
+   THEME SELECTOR
+   ========================================================================== */
+
+.theme-selector {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.theme-btn {
+    background: var(--accent);
+    color: var(--secondary-bg);
+    border: none;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    transition: opacity 0.2s ease;
+}
+
+.theme-btn:hover {
+    opacity: 0.8;
+}
+
+.theme-btn.active {
+    opacity: 1;
+    font-weight: bold;
 }
 
 /* ==========================================================================
@@ -81,7 +137,7 @@ body {
 }
 
 .section-title {
-    color: #495057;
+    color: var(--primary-text);
     margin: 0 0 1.5rem 0;
     font-size: 1.5rem;
     font-weight: 600;
@@ -98,25 +154,17 @@ body {
    ========================================================================== */
 
 .post-preview {
-    background: #fff;
+    background: var(--secondary-bg);
     padding: 1.5rem;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 4px var(--shadow);
+    border: 1px solid var(--border);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .post-preview:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* ==========================================================================
-   POST CONTENT & TYPOGRAPHY
-   ========================================================================== */
-
-.post-header {
-    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px var(--hover-shadow);
 }
 
 .post-title {
@@ -127,26 +175,70 @@ body {
 }
 
 .post-link {
-    color: #212529;
+    color: var(--primary-text);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .post-link:hover {
-    color: #007bff;
+    color: var(--accent);
+}
+
+.post-meta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
 }
 
 .post-date {
-    color: #6c757d;
+    color: var(--secondary-text);
     font-size: 0.875rem;
-    font-weight: 500;
-    display: block;
+}
+
+.post-category {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.post-reading-time {
+    color: var(--secondary-text);
+    font-size: 0.75rem;
 }
 
 .post-excerpt {
-    color: #495057;
+    color: var(--secondary-text);
     margin: 0;
     line-height: 1.5;
+}
+
+.post-tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background: var(--border);
+    color: var(--secondary-text);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}
+
+.featured-badge {
+    background: var(--accent);
+    color: var(--secondary-bg);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
 }
 
 /* ==========================================================================
@@ -154,46 +246,108 @@ body {
    ========================================================================== */
 
 .post {
-    background: #fff;
+    background: var(--secondary-bg);
     padding: 2rem;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 4px var(--shadow);
+    border: 1px solid var(--border);
 }
 
 .post .post-title {
     font-size: 2.25rem;
     margin-bottom: 1rem;
-    color: #212529;
-}
-
-.post .post-date {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #e9ecef;
+    color: var(--primary-text);
 }
 
 .post-content {
     font-size: 1.1rem;
     line-height: 1.7;
-    color: #495057;
+    color: var(--secondary-text);
+}
+
+.post-content h1, .post-content h2, .post-content h3 {
+    color: var(--primary-text);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
 }
 
 .post-content p {
     margin-bottom: 1.5rem;
 }
 
+.post-content code {
+    background: var(--border);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Courier New', monospace;
+}
+
+.post-content pre {
+    background: var(--border);
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
 /* ==========================================================================
-   ERROR PAGE
+   CODE BLOCK STYLING
    ========================================================================== */
+
+.code-block {
+    background: var(--border);
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    font-family: 'Courier New', monospace;
+}
+
+.code-block code {
+    background: none;
+    padding: 0;
+    font-size: 0.9rem;
+}
+
+.keyword {
+    color: #ff6b35; /* Rust/Dioxus orange */
+    font-weight: bold;
+}
+
+.comment {
+    color: #6b7280; /* Neutral gray */
+    font-style: italic;
+}
+
+.string {
+    color: #10b981; /* Green for strings */
+}
+
+.number {
+    color: #3b82f6; /* Blue for numbers */
+}
+
+/* ==========================================================================
+   CATEGORY & ERROR PAGES
+   ========================================================================== */
+
+.category-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.category-description {
+    color: var(--secondary-text);
+    margin: 0.5rem 0 0 0;
+}
 
 .error-page {
     text-align: center;
     padding: 3rem 1.5rem;
-    background: #fff;
+    background: var(--secondary-bg);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--shadow);
 }
 
 .error-page h1 {
@@ -202,7 +356,7 @@ body {
 }
 
 .error-page p {
-    color: #6c757d;
+    color: var(--secondary-text);
     margin: 0;
 }
 
@@ -211,12 +365,21 @@ body {
    ========================================================================== */
 
 @media (max-width: 768px) {
-    .container {
-        padding: 0 1rem;
+    .header-content {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
-    .site-title {
-        font-size: 1.75rem;
+    .nav {
+        width: 100%;
+    }
+
+    .theme-selector {
+        margin-top: 0.5rem;
+    }
+
+    .container {
+        padding: 0 1rem;
     }
 
     .post {
