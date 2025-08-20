@@ -1,48 +1,247 @@
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* ==========================================================================
+   LAYOUT COMPONENTS
+   ========================================================================== */
+
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 20px;
+    width: 100%;
 }
 
-h1 {
-    color: #333;
+.main {
+    flex: 1;
+    padding: 2rem 0;
 }
 
-nav {
-    margin-bottom: 20px;
+/* ==========================================================================
+   HEADER & NAVIGATION
+   ========================================================================== */
+
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid #e9ecef;
+    padding: 1rem 0;
+    margin-bottom: 0;
 }
 
-nav a {
+.site-title {
+    color: #212529;
+    margin: 0 0 0.5rem 0;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.nav {
+    margin: 0;
+}
+
+.nav-link {
     color: #007bff;
     text-decoration: none;
-    margin-right: 10px;
+    font-weight: 500;
+    padding: 0.5rem 0;
+    transition: color 0.2s ease;
 }
 
-nav a:hover {
+.nav-link:hover {
+    color: #0056b3;
     text-decoration: underline;
 }
 
-.posts {
+/* ==========================================================================
+   POSTS SECTION & GRID
+   ========================================================================== */
+
+.posts-section {
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    color: #495057;
+    margin: 0 0 1.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.posts-grid {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.5rem;
 }
+
+/* ==========================================================================
+   POST PREVIEW CARDS
+   ========================================================================== */
 
 .post-preview {
     background: #fff;
-    padding: 15px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e9ecef;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.date {
-    color: #666;
-    font-size: 0.9em;
+.post-preview:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================================================
+   POST CONTENT & TYPOGRAPHY
+   ========================================================================== */
+
+.post-header {
+    margin-bottom: 1rem;
+}
+
+.post-title {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.post-link {
+    color: #212529;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.post-link:hover {
+    color: #007bff;
+}
+
+.post-date {
+    color: #6c757d;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: block;
+}
+
+.post-excerpt {
+    color: #495057;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   FULL POST PAGE
+   ========================================================================== */
+
+.post {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e9ecef;
+}
+
+.post .post-title {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+    color: #212529;
+}
+
+.post .post-date {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.post-content {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #495057;
+}
+
+.post-content p {
+    margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   ERROR PAGE
+   ========================================================================== */
+
+.error-page {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.error-page h1 {
+    color: #dc3545;
+    margin-bottom: 1rem;
+}
+
+.error-page p {
+    color: #6c757d;
+    margin: 0;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 1rem;
+    }
+
+    .site-title {
+        font-size: 1.75rem;
+    }
+
+    .post {
+        padding: 1.5rem;
+    }
+
+    .post .post-title {
+        font-size: 1.875rem;
+    }
+
+    .main {
+        padding: 1rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-preview {
+        padding: 1rem;
+    }
+
+    .post {
+        padding: 1rem;
+    }
+
+    .site-title {
+        font-size: 1.5rem;
+    }
 }
