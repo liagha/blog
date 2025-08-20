@@ -4,7 +4,6 @@ mod components;
 mod pages;
 mod data;
 
-// src/main.rs
 use dioxus::prelude::*;
 use app::App;
 

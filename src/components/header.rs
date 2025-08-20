@@ -1,4 +1,3 @@
-// src/components/header.rs
 use dioxus::prelude::*;
 use std::collections::HashMap;
 use crate::app::{AppState, Theme};

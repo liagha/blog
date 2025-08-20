@@ -1,4 +1,3 @@
-// src/data/pages.rs
 #[derive(Clone, Debug, PartialEq)]
 pub struct StaticPage {
     pub title: String,

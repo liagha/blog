@@ -1,4 +1,3 @@
-// src/pages/category
 use dioxus::prelude::*;
 use crate::components::header::Header;
 use crate::components::post_preview::PostPreview;

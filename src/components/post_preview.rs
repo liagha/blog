@@ -1,4 +1,3 @@
-// src/components/post_preview.rs
 use dioxus::prelude::*;
 use crate::data::categories::{BlogCategory, get_categories};
 use crate::data::posts::BlogPost;

@@ -1,4 +1,3 @@
-// src/data/themes.rs
 use std::collections::HashMap;
 use crate::app::Theme;
 

@@ -1,4 +1,3 @@
-// src/data/categories.rs
 #[derive(Clone, Debug, PartialEq)]
 pub struct BlogCategory {
     pub name: String,

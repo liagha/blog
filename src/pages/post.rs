@@ -1,8 +1,7 @@
-// src/pages/post.rs
 use dioxus::prelude::*;
 use crate::components::header::Header;
 use crate::data::categories::{BlogCategory, get_categories};
-use crate::data::posts::{BlogPost, get_blog_posts};
+use crate::data::posts::{BlogPost, get_blog_posts, ContentBlock};
 use crate::routes::Route;
 
 #[component]
@@ -36,9 +35,22 @@ pub fn Post(id: i32) -> Element {
                                         span { class: "post-reading-time", "{post.reading_time} min read" }
                                     }
                                 }
-                                div {
-                                    class: "post-content",
-                                    dangerous_inner_html: "{post.content}"
+                                div { class: "post-content",
+                                    for block in post.content.iter() {
+                                        match block {
+                                            ContentBlock::Prose(html) => rsx! {
+                                                div { dangerous_inner_html: "{html}" }
+                                            },
+                                            ContentBlock::Code { code, language } => {
+                                                let lang_class = language.as_ref().map(|l| format!("language-{}", l)).unwrap_or_default();
+                                                rsx! {
+                                                    pre { class: "code-block {lang_class}",
+                                                        code { "{code}" }
+                                                    }
+                                                }
+                                            },
+                                        }
+                                    }
                                 }
                                 if !post.tags.is_empty() {
                                     div { class: "post-tags",
