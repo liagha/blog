@@ -1,28 +1,23 @@
-/* ==========================================================================
-   THEME VARIABLES
-   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 
 :root {
-    --primary-bg: #f8f9fa; /* Default light theme values */
-    --secondary-bg: #fff;
-    --primary-text: #333;
-    --secondary-text: #495057;
-    --accent: #007bff;
-    --border: #e9ecef;
+    --main-font: 'SF Mono', 'Menlo', 'JetBrains Mono', monospace;
+    --primary-bg: rgba(248, 249, 250, 1);
+    --secondary-bg: rgba(255, 255, 255, 1);
+    --primary-text: rgba(51, 51, 51, 1);
+    --secondary-text: rgba(73, 80, 87, 1);
+    --accent: rgba(0, 123, 255, 1);
+    --border: rgba(233, 236, 239, 1);
     --shadow: rgba(0, 0, 0, 0.1);
     --hover-shadow: rgba(0, 0, 0, 0.15);
 }
-
-/* ==========================================================================
-   RESET & BASE STYLES
-   ========================================================================== */
 
 * {
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--main-font), serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
@@ -30,10 +25,6 @@ body {
     color: var(--primary-text);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
-
-/* ==========================================================================
-   LAYOUT COMPONENTS
-   ========================================================================== */
 
 .page {
     min-height: 100vh;
@@ -52,10 +43,6 @@ body {
     flex: 1;
     padding: 2rem 0;
 }
-
-/* ==========================================================================
-   HEADER & NAVIGATION
-   ========================================================================== */
 
 .header {
     background-color: var(--secondary-bg);
@@ -98,10 +85,6 @@ body {
     color: var(--primary-text);
 }
 
-/* ==========================================================================
-   THEME SELECTOR
-   ========================================================================== */
-
 .theme-selector {
     display: flex;
     gap: 0.5rem;
@@ -128,10 +111,6 @@ body {
     font-weight: bold;
 }
 
-/* ==========================================================================
-   POSTS SECTION & GRID
-   ========================================================================== */
-
 .posts-section {
     margin-bottom: 3rem;
 }
@@ -148,10 +127,6 @@ body {
     flex-direction: column;
     gap: 1.5rem;
 }
-
-/* ==========================================================================
-   POST PREVIEW CARDS
-   ========================================================================== */
 
 .post-preview {
     background: var(--secondary-bg);
@@ -225,8 +200,6 @@ body {
 }
 
 .tag {
-    background: var(--border);
-    color: var(--secondary-text);
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
     font-size: 0.75rem;
@@ -240,10 +213,6 @@ body {
     font-size: 0.75rem;
     font-weight: bold;
 }
-
-/* ==========================================================================
-   FULL POST PAGE
-   ========================================================================== */
 
 .post {
     background: var(--secondary-bg);
@@ -290,10 +259,6 @@ body {
     margin: 1.5rem 0;
 }
 
-/* ==========================================================================
-   CODE BLOCK STYLING
-   ========================================================================== */
-
 .code-block {
     background: var(--border);
     padding: 1rem;
@@ -310,26 +275,56 @@ body {
 }
 
 .keyword {
-    color: #ff6b35; /* Rust/Dioxus orange */
+    color: rgba(255, 107, 53, 1);
     font-weight: bold;
 }
 
 .comment {
-    color: #6b7280; /* Neutral gray */
+    color: rgba(107, 114, 128, 1);
     font-style: italic;
 }
 
 .string {
-    color: #10b981; /* Green for strings */
+    color: rgba(16, 185, 129, 1);
 }
 
 .number {
-    color: #3b82f6; /* Blue for numbers */
+    color: rgba(59, 130, 246, 1);
 }
 
-/* ==========================================================================
-   CATEGORY & ERROR PAGES
-   ========================================================================== */
+.media-block {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.image-block {
+    max-width: 100%;
+}
+
+.post-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow);
+}
+
+.image-caption {
+    color: var(--secondary-text);
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+.video-block {
+    max-width: 100%;
+}
+
+.post-video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow);
+}
 
 .category-header {
     margin-bottom: 2rem;
@@ -351,7 +346,7 @@ body {
 }
 
 .error-page h1 {
-    color: #dc3545;
+    color: rgba(220, 53, 69, 1);
     margin-bottom: 1rem;
 }
 
@@ -359,10 +354,6 @@ body {
     color: var(--secondary-text);
     margin: 0;
 }
-
-/* ==========================================================================
-   RESPONSIVE DESIGN
-   ========================================================================== */
 
 @media (max-width: 768px) {
     .header-content {

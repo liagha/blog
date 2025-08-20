@@ -27,7 +27,7 @@ pub fn CategoryPage(category: String) -> Element {
                     div { class: "container",
                         div { class: "category-header",
                             h1 { class: "section-title",
-                                style: "color: {cat_info.color};",
+                                style: format!("color: {};", cat_info.color.to_css()),
                                 "{cat_info.name}"
                             }
                             p { class: "category-description", "{cat_info.description}" }

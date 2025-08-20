@@ -1,11 +1,10 @@
 use {
     dioxus::prelude::*,
-
     crate::{
         routes::Route,
         data::{
-            posts::BlogPost,
-            categories::{get_categories},
+            categories::{BlogCategory, get_categories},
+            posts::{BlogPost, Tag},
         },
     }
 };
@@ -31,7 +30,7 @@ pub fn PostPreview(post: BlogPost) -> Element {
                         Link {
                             to: Route::CategoryPage { category: cat.slug.clone() },
                             class: "post-category",
-                            style: "background-color: {cat.color}; color: white;",
+                            style: format!("background-color: {}; color: white;", cat.color.to_css()),
                             "{cat.name}"
                         }
                     }
@@ -45,7 +44,11 @@ pub fn PostPreview(post: BlogPost) -> Element {
             if !post.tags.is_empty() {
                 div { class: "post-tags",
                     for tag in post.tags {
-                        span { class: "tag", "{tag}" }
+                        span {
+                            class: "tag",
+                            style: format!("background-color: {}; color: white;", tag.color.to_css()),
+                            "{tag.name}"
+                        }
                     }
                 }
             }
