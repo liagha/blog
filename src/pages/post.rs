@@ -3,12 +3,14 @@ use crate::components::header::Header;
 use crate::data::categories::{BlogCategory, get_categories};
 use crate::data::posts::{BlogPost, get_blog_posts, ContentBlock};
 use crate::routes::Route;
+use crate::components::syntax::HighlighterConfig;
 
 #[component]
 pub fn Post(id: i32) -> Element {
     let posts = get_blog_posts();
     let post = posts.into_iter().find(|p| p.id == id);
     let categories = get_categories();
+    let highlighter = HighlighterConfig::new();
 
     match post {
         Some(post) => {
@@ -42,10 +44,10 @@ pub fn Post(id: i32) -> Element {
                                                 div { dangerous_inner_html: "{html}" }
                                             },
                                             ContentBlock::Code { code, language } => {
-                                                let lang_class = language.as_ref().map(|l| format!("language-{}", l)).unwrap_or_default();
+                                                let highlighted_code = highlighter.highlight_code(code, language.as_deref());
                                                 rsx! {
-                                                    pre { class: "code-block {lang_class}",
-                                                        code { "{code}" }
+                                                    pre { class: "code-block",
+                                                        code { dangerous_inner_html: "{highlighted_code}" }
                                                     }
                                                 }
                                             },

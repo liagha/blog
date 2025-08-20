@@ -24,6 +24,18 @@ pub fn get_blog_posts() -> Vec<BlogPost> {
             title: "Getting Started with Dioxus".to_string(),
             content: vec![
                 ContentBlock::Prose("<h1>Getting Started with Dioxus</h1><p>Dioxus is an amazing framework for building user interfaces in Rust. It brings the component-based architecture we know from React to the Rust ecosystem.</p><h2>Why Dioxus?</h2><ul><li><strong>Performance</strong>: Compiled to native code</li><li><strong>Safety</strong>: Rust's memory safety guarantees</li><li><strong>Familiar</strong>: React-like syntax and patterns</li><li><strong>Versatile</strong>: Web, desktop, mobile, and TUI support</li></ul><h2>Setting Up</h2><p>Getting started is straightforward:</p>".to_string()),
+                ContentBlock::Code { code: "mod app;
+mod routes;
+mod components;
+mod pages;
+mod data;
+
+use dioxus::prelude::*;
+use app::App;
+
+fn main() {
+    launch(App);
+}".to_string(), language: Some("rust".to_string()) },
                 ContentBlock::Code { code: "cargo new my-dioxus-app\ncd my-dioxus-app\ncargo add dioxus".to_string(), language: Some("bash".to_string()) },
                 ContentBlock::Prose("<p>Then you can start building components with the familiar JSX-like syntax!</p>".to_string()),
             ],

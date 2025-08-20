@@ -292,6 +292,26 @@ pub fn App() -> Element {
             margin: 1.5rem 0;
         }
 
+        .code-block {
+            background: var(--border);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .code-block code {
+            background: none;
+            padding: 0;
+            font-size: 0.9rem;
+        }
+
+        .keyword { color: #ff6b35; font-weight: bold; } /* Rust/Dioxus orange */
+        .comment { color: #6b7280; font-style: italic; } /* Neutral gray */
+        .string { color: #10b981; } /* Green for strings */
+        .number { color: #3b82f6; } /* Blue for numbers */
+
         .section-title {
             color: var(--primary-text);
             margin: 0 0 1.5rem 0;
