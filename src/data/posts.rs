@@ -81,22 +81,6 @@ fn parse_markdown_to_blocks(md: &str) -> Vec<ContentBlock> {
 pub fn get_blog_posts() -> Vec<BlogPost> {
     vec![
         BlogPost {
-            id: 1,
-            title: "Getting Started with Dioxus".to_string(),
-            content: vec![
-                ContentBlock::Prose("<h1>Getting Started with Dioxus</h1><p>Dioxus is an amazing framework for building user interfaces in Rust. It brings the component-based architecture we know from React to the Rust ecosystem.</p><h2>Why Dioxus?</h2><ul><li><strong>Performance</strong>: Compiled to native code</li><li><strong>Safety</strong>: Rust's memory safety guarantees</li><li><strong>Familiar</strong>: React-like syntax and patterns</li><li><strong>Versatile</strong>: Web, desktop, mobile, and TUI support</li></ul><h2>Setting Up</h2><p>Getting started is straightforward:</p>".to_string()),
-                ContentBlock::Code { code: "mod app;\nmod routes;\nmod components;\nmod pages;\nmod data;\n\nuse dioxus::prelude::*;\nuse app::App;\n\n\nfn main() {\n    launch(App);\n}".to_string(), language: Some("rust".to_string()) },
-                ContentBlock::Code { code: "cargo new my-dioxus-app\ncd my-dioxus-app\ncargo add dioxus".to_string(), language: Some("bash".to_string()) },
-                ContentBlock::Prose("<p>Then you can start building components with the familiar JSX-like syntax!</p>".to_string()),
-            ],
-            excerpt: "Learn how to get started with Dioxus, the React-like framework for Rust.".to_string(),
-            date: "2025-08-20".to_string(),
-            category: "dioxus".to_string(),
-            tags: vec!["rust".to_string(), "tutorial".to_string(), "beginner".to_string()],
-            reading_time: 5,
-            featured: true,
-        },
-        BlogPost {
             id: 2,
             title: "Building Modular Web Apps in Rust".to_string(),
             content: vec![
@@ -154,7 +138,7 @@ That's it! More content can follow.
 "#),
             excerpt: "A demonstration of Markdown post support in your Dioxus blog.".to_string(),
             date: "2025-08-21".to_string(),
-            category: "dioxus".to_string(),
+            category: "".to_string(),
             tags: vec!["markdown".to_string(), "dioxus".to_string(), "rust".to_string()],
             reading_time: 4,
             featured: true,

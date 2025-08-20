@@ -21,12 +21,6 @@ pub fn get_categories() -> Vec<BlogCategory> {
             color: "#61dafb".to_string(),
         },
         BlogCategory {
-            name: "Dioxus".to_string(),
-            slug: "dioxus".to_string(),
-            description: "Building apps with Dioxus framework".to_string(),
-            color: "#ff6b35".to_string(),
-        },
-        BlogCategory {
             name: "Personal".to_string(),
             slug: "personal".to_string(),
             description: "Personal thoughts and experiences".to_string(),
