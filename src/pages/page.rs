@@ -1,6 +1,10 @@
-use dioxus::prelude::*;
-use crate::components::header::Header;
-use crate::data::pages::{StaticPage, get_static_pages};
+use {
+    dioxus::prelude::*,
+    crate::{
+        components::header::Header,
+        data::pages::{StaticPage, get_static_pages},
+    }
+};
 
 #[component]
 pub fn Page(slug: String) -> Element {

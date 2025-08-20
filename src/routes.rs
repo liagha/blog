@@ -1,8 +1,14 @@
-use dioxus::prelude::*;
-use crate::pages::home::Home;
-use crate::pages::post::Post;
-use crate::pages::page::Page;
-use crate::pages::category::CategoryPage;
+use {
+    dioxus::prelude::*,
+    crate::{
+        pages::{
+            home::Home,
+            post::Post,
+            page::Page,
+            category::CategoryPage,
+        }
+    },
+};
 
 #[derive(Clone, PartialEq, Routable)]
 pub enum Route {

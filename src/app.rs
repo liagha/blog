@@ -1,8 +1,11 @@
-use dioxus::prelude::*;
-use std::collections::HashMap;
-use crate::data::themes::get_themes;
-use crate::routes::Route;
-use crate::components::header::Header;
+use {
+    dioxus::prelude::*,
+    crate::{
+        Map,
+        routes::Route,
+        data::themes::get_themes,
+    },
+};
 
 #[derive(Clone, Debug, PartialEq)]
 pub struct Theme {
@@ -51,7 +54,7 @@ impl Theme {
 #[derive(Clone)]
 pub struct AppState {
     pub current_theme: String,
-    pub available_themes: HashMap<String, Theme>,
+    pub available_themes: Map<String, Theme>,
 }
 
 impl AppState {

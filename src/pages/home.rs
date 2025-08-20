@@ -1,7 +1,13 @@
-use dioxus::prelude::*;
-use crate::components::header::Header;
-use crate::components::post_preview::PostPreview;
-use crate::data::posts::{BlogPost, get_blog_posts};
+use {
+    dioxus::prelude::*,
+    crate::{
+        components::{
+            header::Header,
+            post_preview::PostPreview,
+        },
+        data::posts::{BlogPost, get_blog_posts},
+    }
+};
 
 #[component]
 pub fn Home() -> Element {

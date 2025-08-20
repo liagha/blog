@@ -1,9 +1,17 @@
-use dioxus::prelude::*;
-use crate::components::header::Header;
-use crate::data::categories::{BlogCategory, get_categories};
-use crate::data::posts::{BlogPost, get_blog_posts, ContentBlock};
-use crate::routes::Route;
-use crate::components::syntax::HighlighterConfig;
+use {
+    dioxus::prelude::*,
+    crate::{
+        routes::Route,
+        components::{
+            header::Header,
+            syntax::HighlighterConfig,
+        },
+        data::{
+            categories::{BlogCategory, get_categories},
+            posts::{BlogPost, get_blog_posts, ContentBlock},
+        },
+    },
+};
 
 #[component]
 pub fn Post(id: i32) -> Element {

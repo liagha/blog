@@ -1,8 +1,11 @@
-use regex::Regex;
-use std::collections::HashMap;
+use {
+    crate::{
+        Map, Regex,
+    },
+};
 
 pub struct HighlighterConfig {
-    languages: HashMap<String, LanguageConfig>,
+    languages: Map<String, LanguageConfig>,
 }
 
 pub struct LanguageConfig {
@@ -14,9 +17,8 @@ pub struct LanguageConfig {
 
 impl HighlighterConfig {
     pub fn new() -> Self {
-        let mut languages = HashMap::new();
+        let mut languages = Map::new();
 
-        // Rust language configuration
         languages.insert(
             "rust".to_string(),
             LanguageConfig {
@@ -30,7 +32,6 @@ impl HighlighterConfig {
             },
         );
 
-        // Bash language configuration
         languages.insert(
             "bash".to_string(),
             LanguageConfig {
@@ -52,13 +53,9 @@ impl HighlighterConfig {
         let mut highlighted = code.to_string();
 
         if let Some(config) = self.languages.get(lang) {
-            // Highlight comments
             highlighted = config.comment_pattern.replace_all(&highlighted, "<span class=\"comment\">$0</span>").to_string();
-            // Highlight strings
             highlighted = config.string_pattern.replace_all(&highlighted, "<span class=\"string\">$0</span>").to_string();
-            // Highlight numbers
             highlighted = config.number_pattern.replace_all(&highlighted, "<span class=\"number\">$0</span>").to_string();
-            // Highlight keywords
             for keyword in &config.keywords {
                 let pattern = Regex::new(&format!(r"\b{}\b", regex::escape(keyword))).unwrap();
                 highlighted = pattern.replace_all(&highlighted, format!("<span class=\"keyword\">{}</span>", keyword)).to_string();

@@ -1,7 +1,14 @@
-use dioxus::prelude::*;
-use crate::data::categories::{BlogCategory, get_categories};
-use crate::data::posts::BlogPost;
-use crate::routes::Route;
+use {
+    dioxus::prelude::*,
+
+    crate::{
+        routes::Route,
+        data::{
+            posts::BlogPost,
+            categories::{get_categories},
+        },
+    }
+};
 
 #[component]
 pub fn PostPreview(post: BlogPost) -> Element {

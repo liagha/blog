@@ -1,8 +1,11 @@
-use std::collections::HashMap;
-use crate::app::Theme;
+use {
+    crate::{
+        Map, app::Theme,  
+    },
+};
 
-pub fn get_themes() -> HashMap<String, Theme> {
-    let mut themes = HashMap::new();
+pub fn get_themes() -> Map<String, Theme> {
+    let mut themes = Map::new();
 
     themes.insert("light".to_string(), Theme {
         name: "Light".to_string(),

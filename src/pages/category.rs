@@ -1,8 +1,16 @@
-use dioxus::prelude::*;
-use crate::components::header::Header;
-use crate::components::post_preview::PostPreview;
-use crate::data::categories::{BlogCategory, get_categories};
-use crate::data::posts::{BlogPost, get_blog_posts};
+use {
+    dioxus::prelude::*,
+    crate::{
+        components::{
+            header::Header,
+            post_preview::PostPreview,
+        },
+        data::{
+            categories::{BlogCategory, get_categories},
+            posts::{BlogPost, get_blog_posts},
+        },
+    }    
+};
 
 #[component]
 pub fn CategoryPage(category: String) -> Element {

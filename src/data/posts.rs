@@ -1,3 +1,9 @@
+pub use {
+    crate::{
+        markdown::{CodeBlockKind, Event, html, Parser, Tag, TagEnd},
+    }
+};
+
 #[derive(Clone, Debug, PartialEq)]
 pub enum ContentBlock {
     Prose(String),
@@ -17,6 +23,61 @@ pub struct BlogPost {
     pub featured: bool,
 }
 
+fn parse_markdown_to_blocks(md: &str) -> Vec<ContentBlock> {
+    let parser = Parser::new(md);
+    let mut blocks: Vec<ContentBlock> = vec![];
+    let mut current_events: Vec<Event> = vec![];
+    let mut current_code = String::new();
+    let mut current_lang: Option<String> = None;
+    let mut in_code_block = false;
+
+    for event in parser {
+        if in_code_block {
+            match event {
+                Event::Text(text) => {
+                    current_code.push_str(&text);
+                }
+                Event::End(TagEnd::CodeBlock) => {
+                    blocks.push(ContentBlock::Code {
+                        code: std::mem::take(&mut current_code),
+                        language: current_lang.take(),
+                    });
+                    in_code_block = false;
+                }
+                _ => {}
+            }
+        } else {
+            match event {
+                Event::Start(Tag::CodeBlock(kind)) => {
+                    if !current_events.is_empty() {
+                        let mut html_buf = String::new();
+                        html::push_html(&mut html_buf, current_events.into_iter());
+                        blocks.push(ContentBlock::Prose(html_buf));
+                        current_events = vec![];
+                    }
+                    in_code_block = true;
+                    current_code = String::new();
+                    current_lang = match kind {
+                        CodeBlockKind::Fenced(info) if !info.is_empty() => Some(info.split_whitespace().next().unwrap().to_string()),
+                        _ => None,
+                    };
+                }
+                other => {
+                    current_events.push(other);
+                }
+            }
+        }
+    }
+
+    if !current_events.is_empty() {
+        let mut html_buf = String::new();
+        html::push_html(&mut html_buf, current_events.into_iter());
+        blocks.push(ContentBlock::Prose(html_buf));
+    }
+
+    blocks
+}
+
 pub fn get_blog_posts() -> Vec<BlogPost> {
     vec![
         BlogPost {
@@ -24,18 +85,7 @@ pub fn get_blog_posts() -> Vec<BlogPost> {
             title: "Getting Started with Dioxus".to_string(),
             content: vec![
                 ContentBlock::Prose("<h1>Getting Started with Dioxus</h1><p>Dioxus is an amazing framework for building user interfaces in Rust. It brings the component-based architecture we know from React to the Rust ecosystem.</p><h2>Why Dioxus?</h2><ul><li><strong>Performance</strong>: Compiled to native code</li><li><strong>Safety</strong>: Rust's memory safety guarantees</li><li><strong>Familiar</strong>: React-like syntax and patterns</li><li><strong>Versatile</strong>: Web, desktop, mobile, and TUI support</li></ul><h2>Setting Up</h2><p>Getting started is straightforward:</p>".to_string()),
-                ContentBlock::Code { code: "mod app;
-mod routes;
-mod components;
-mod pages;
-mod data;
-
-use dioxus::prelude::*;
-use app::App;
-
-fn main() {
-    launch(App);
-}".to_string(), language: Some("rust".to_string()) },
+                ContentBlock::Code { code: "mod app;\nmod routes;\nmod components;\nmod pages;\nmod data;\n\nuse dioxus::prelude::*;\nuse app::App;\n\n\nfn main() {\n    launch(App);\n}".to_string(), language: Some("rust".to_string()) },
                 ContentBlock::Code { code: "cargo new my-dioxus-app\ncd my-dioxus-app\ncargo add dioxus".to_string(), language: Some("bash".to_string()) },
                 ContentBlock::Prose("<p>Then you can start building components with the familiar JSX-like syntax!</p>".to_string()),
             ],
@@ -71,6 +121,43 @@ fn main() {
             tags: vec!["rust".to_string(), "learning".to_string(), "personal".to_string()],
             reading_time: 6,
             featured: false,
+        },
+        BlogPost {
+            id: 4,
+            title: "Exploring Markdown in Dioxus".to_string(),
+            content: parse_markdown_to_blocks(r#"
+# Exploring Markdown in Dioxus
+
+This is a sample post written entirely in Markdown. It supports headings, lists, and code blocks just like your HTML posts.
+
+## Why Add Markdown Support?
+
+- Easier content creation
+- Better for writers without HTML knowledge
+- Maintains the same rendering pipeline
+
+Here's a Rust code example:
+
+```rust
+fn main() {
+    println!("Hello from Markdown!");
+}
+```
+
+And a bash script:
+
+```bash
+echo "Markdown support added!"
+```
+
+That's it! More content can follow.
+"#),
+            excerpt: "A demonstration of Markdown post support in your Dioxus blog.".to_string(),
+            date: "2025-08-21".to_string(),
+            category: "dioxus".to_string(),
+            tags: vec!["markdown".to_string(), "dioxus".to_string(), "rust".to_string()],
+            reading_time: 4,
+            featured: true,
         },
     ]
 }

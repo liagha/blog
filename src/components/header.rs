@@ -1,15 +1,20 @@
-use dioxus::prelude::*;
-use std::collections::HashMap;
-use crate::app::{AppState, Theme};
-use crate::routes::Route;
-use crate::data::pages::get_static_pages;
+use {
+    dioxus::prelude::*,
+    
+    crate::{
+        Map,
+        routes::Route,
+        app::{AppState, Theme},
+        data::pages::get_static_pages,
+    },
+};
 
 #[component]
 pub fn Header() -> Element {
     let mut app_state = use_context::<Signal<AppState>>();
     let static_pages = get_static_pages();
     let nav_pages: Vec<_> = static_pages.into_iter().filter(|p| p.show_in_nav).collect();
-    let themes: HashMap<String, Theme> = app_state.read().available_themes.clone();
+    let themes: Map<String, Theme> = app_state.read().available_themes.clone();
     let current_theme = app_state.read().current_theme.clone();
 
     rsx! {
